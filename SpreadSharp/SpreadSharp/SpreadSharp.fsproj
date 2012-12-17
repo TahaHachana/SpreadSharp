@@ -48,11 +48,13 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="COM.fs" />
+    <Compile Include="Types.fs" />
     <Compile Include="Utilities.fs" />
     <Compile Include="XApp.fs" />
     <Compile Include="XWorkbook.fs" />
     <Compile Include="XWorksheet.fs" />
     <Compile Include="XRange.fs" />
+    <Compile Include="Collections.fs" />
     <None Include="Script.fsx" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\FSharp\1.0\Microsoft.FSharp.Targets" Condition="!Exists('$(MSBuildBinPath)\Microsoft.Build.Tasks.v4.0.dll')" />
