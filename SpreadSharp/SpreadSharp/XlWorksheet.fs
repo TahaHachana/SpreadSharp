@@ -2,7 +2,7 @@
 
 open Microsoft.Office.Interop.Excel
 
-module XWorksheet =
+module XlWorksheet =
 
     /// <summary>Adds a worksheet to the specified workbook and optionally sets its name.</summary>
     /// <param name="workbook">The workbook object.</param>

@@ -2,7 +2,7 @@
 
 open Microsoft.Office.Interop.Excel
 
-module XWorkbook =
+module XlWorkbook =
 
     /// <summary>Adds a workbook to an Excel app.</summary>
     /// <returns>The new workbook.</returns>

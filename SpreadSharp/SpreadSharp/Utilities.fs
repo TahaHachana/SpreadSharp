@@ -1,5 +1,6 @@
 ﻿namespace SpreadSharp
 
+open Microsoft.FSharp.Reflection
 open Microsoft.Office.Interop.Excel
 open System
 open System.Runtime.InteropServices
@@ -23,3 +24,12 @@ module private Utilities =
             | Some name ->
                 worksheet.Name <- name
                 worksheet
+
+    let recordFieldsNames recordType =
+        FSharpType.GetRecordFields recordType
+        |> Array.map (fun x -> box x.Name)
+
+    let fieldsArray records =
+        records
+        |> Seq.map (fun record ->
+            FSharpValue.GetRecordFields record)

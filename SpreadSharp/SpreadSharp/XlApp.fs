@@ -2,7 +2,7 @@
 
 open Microsoft.Office.Interop.Excel
 
-module XApp =
+module XlApp =
 
     /// <summary>Returns the stack collection used to hold the COM objects created by the application.
     /// This is the mechanism used to abstract away proper COM cleanup.</summary>
@@ -22,3 +22,13 @@ module XApp =
     let start visible =
         let appClass = ApplicationClass(Visible = visible)
         COM.pushComObj appClass
+
+    /// <summary>Restores the control of Excel to the user. This function
+    /// is useful when the end used is supposed to interact with the
+    /// Excel instance.</summary>
+    /// <param name="appClass">The Excel application class instance.</param>
+    let restoreUserControl (appClass : ApplicationClass) =
+        appClass.UserControl <- true
+        appClass.Visible <- true
+        Utilities.releaseComObjects ()
+        Utilities.collectGarbage ()

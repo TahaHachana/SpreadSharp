@@ -4,7 +4,7 @@ open System
 open Microsoft.Office.Interop.Excel
 open Types
 
-module XRange =
+module XlRange =
 
     /// <summary>Returns a worksheet range.</summary>
     /// <param name="worksheet">The worksheet containing the range.</param>

@@ -50,11 +50,13 @@
     <Compile Include="COM.fs" />
     <Compile Include="Types.fs" />
     <Compile Include="Utilities.fs" />
-    <Compile Include="XApp.fs" />
-    <Compile Include="XWorkbook.fs" />
-    <Compile Include="XWorksheet.fs" />
-    <Compile Include="XRange.fs" />
+    <Compile Include="XlApp.fs" />
+    <Compile Include="XlWorkbook.fs" />
+    <Compile Include="XlWorksheet.fs" />
+    <Compile Include="XlRange.fs" />
+    <Compile Include="Array2D.fs" />
     <Compile Include="Collections.fs" />
+    <Compile Include="Records.fs" />
     <None Include="Script.fsx" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\FSharp\1.0\Microsoft.FSharp.Targets" Condition="!Exists('$(MSBuildBinPath)\Microsoft.Build.Tasks.v4.0.dll')" />
