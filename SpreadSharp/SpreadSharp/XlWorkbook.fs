@@ -8,20 +8,12 @@ module XlWorkbook =
     /// <returns>The new workbook.</returns>
     let add (appClass : ApplicationClass) =
         appClass.Workbooks.Add()
-        |> COM.pushComObj
+        |> Com.pushComObj
 
-    /// <summary>Closes a workbook.</summary>
+    /// <summary>Closes a workbook. Use the save and saveAs function to save
+    /// a workbook before closing it.</summary>
     /// <param name="workbook">The workbook to close.</param>
-    /// <param name="saveChanges">The SaveChanges setting.</param>
-    /// <param name="fileName">The saving path.</param>
-    /// <param name="routeWorkbook">The RouteWorkbook setting.</param>
-    /// <returns>unit</returns>
-    let close (workbook : Workbook) saveChanges fileName routeWorkbook =
-        workbook.Close(
-            SaveChanges   = Utilities.boxOrMissing<bool>   saveChanges,
-            Filename      = Utilities.boxOrMissing<string> fileName,
-            RouteWorkbook = Utilities.boxOrMissing<bool>   routeWorkbook
-        )
+    let close (workbook : Workbook) = workbook.Close()
 
     /// <summary>Opens an existing workbook.</summary>
     /// <param name="appClass">The Excel ApplicationClass.</param>
@@ -29,7 +21,7 @@ module XlWorkbook =
     /// <returns>The opened workbook.</returns>
     let openWorkbook (appClass : ApplicationClass) fileName =
         appClass.Workbooks.Open fileName
-        |> COM.pushComObj
+        |> Com.pushComObj
 
     /// <summary>Saves a workbook in the MyDocuments folder.</summary>
     /// <param name="workbook">The workbook to save.</param>
@@ -40,7 +32,7 @@ module XlWorkbook =
     /// <param name="workbook">The workbook to save.</param>
     /// <param name="fileName">The name of the workbook file.</param>
     /// <returns>unit</returns>
-    let saveAs (workbook : Workbook) (fileName : string) = workbook.SaveAs(Filename = fileName)
+    let saveAs (fileName : string) (workbook : Workbook) = workbook.SaveAs(Filename = fileName)
 
 //    type OpenTextParameters =
 //        {

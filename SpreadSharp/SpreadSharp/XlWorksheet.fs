@@ -11,7 +11,7 @@ module XlWorksheet =
     let add (workbook : Workbook) nameOption =
         workbook.Worksheets.Add()
         :?> Worksheet
-        |> COM.pushComObj
+        |> Com.pushComObj
         |> Utilities.setWorksheetName nameOption
 
     /// <summary>Adds a worksheet to the specified workbook before another one and optionally sets its name.</summary>
@@ -22,7 +22,7 @@ module XlWorksheet =
     let addBefore (workbook : Workbook) worksheet nameOption =
         workbook.Worksheets.Add(Before = worksheet)
         :?> Worksheet
-        |> COM.pushComObj
+        |> Com.pushComObj
         |> Utilities.setWorksheetName nameOption
 
     /// <summary>Adds a worksheet to the specified workbook after another one and optionally sets its name.</summary>
@@ -33,7 +33,7 @@ module XlWorksheet =
     let addAfter (workbook : Workbook) worksheet nameOption =
         workbook.Worksheets.Add(After = worksheet)
         :?> Worksheet
-        |> COM.pushComObj
+        |> Com.pushComObj
         |> Utilities.setWorksheetName nameOption
 
     /// <summary>Adds multiple worksheets to the specified workbook.</summary>
@@ -44,7 +44,7 @@ module XlWorksheet =
         |> List.iter (fun _ ->
             workbook.Worksheets.Add()
             :?> Worksheet
-            |> COM.pushComObj
+            |> Com.pushComObj
             |> ignore)
 
     /// <summary>Adds multiple worksheets before another one to the specified workbook.</summary>
@@ -56,7 +56,7 @@ module XlWorksheet =
         |> List.iter (fun _ ->
             workbook.Worksheets.Add(Before = worksheet)
             :?> Worksheet
-            |> COM.pushComObj
+            |> Com.pushComObj
             |> ignore)
 
     /// <summary>Adds multiple worksheets after another one to the specified workbook.</summary>
@@ -68,7 +68,7 @@ module XlWorksheet =
         |> List.iter (fun _ ->
             workbook.Worksheets.Add(After = worksheet)
             :?> Worksheet
-            |> COM.pushComObj
+            |> Com.pushComObj
             |> ignore)
 
     /// <summary>Moves a worksheet to a new workbook.</summary>

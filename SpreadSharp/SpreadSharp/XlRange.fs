@@ -14,7 +14,7 @@ module XlRange =
     let get (worksheet : Worksheet) (cell : string) cell' =
         let cell'' = Utilities.boxOrMissing<string> cell'
         worksheet.Range(cell, cell'')
-        |> COM.pushComObj
+        |> Com.pushComObj
 
     /// <summary>Selects a range of cells.</summary>
     /// <param name="range">The range to select.</param>
@@ -76,7 +76,7 @@ module XlRange =
             worksheet.Columns.[idx]
             :?> Range
             |> fun x -> x.EntireColumn
-            |> COM.pushComObj
+            |> Com.pushComObj
 
         /// <summary>Returns the range representing the column with the specified header.</summary>
         /// <param name="worksheet">The worksheet containing the column.</param>
@@ -85,7 +85,7 @@ module XlRange =
             worksheet.Columns.[header]
             :?> Range
             |> fun x -> x.EntireColumn
-            |> COM.pushComObj
+            |> Com.pushComObj
 
         /// <summary>Insert a column using shift direction and copy origin parameters.</summary>
         /// <param name="range">The range representing the column.</param>
@@ -113,7 +113,7 @@ module XlRange =
             worksheet.Rows.[idx]
             :?> Range
             |> fun x -> x.EntireRow
-            |> COM.pushComObj
+            |> Com.pushComObj
 
         /// <summary>Insert a row using the shift direction and copy origin parameters.</summary>
         /// <param name="range">The range representing the row.</param>

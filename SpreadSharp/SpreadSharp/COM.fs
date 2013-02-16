@@ -1,8 +1,10 @@
 ﻿namespace SpreadSharp
 
+open System
 open System.Collections.Generic
+open System.Runtime.InteropServices
 
-module COM =
+module Com =
 
     /// <summary>Holds COM objects explicitly created by the application.
     /// This is the mechanism used to hide proper COM cleanup.</summary>
@@ -16,3 +18,15 @@ module COM =
     let pushComObj comObj =
         comStack.Push comObj
         comObj
+
+    let inline private finalRelease comObj = Marshal.FinalReleaseComObject comObj |> ignore
+
+    let inline private collectGarbage () =
+        GC.Collect ()
+        GC.WaitForPendingFinalizers ()
+    
+    /// <summary>Releases COM objects explicitly created by the application.</summary>
+    let releaseComObjects () =  
+        comStack |> Seq.iter finalRelease
+        comStack.Clear ()
+        collectGarbage ()

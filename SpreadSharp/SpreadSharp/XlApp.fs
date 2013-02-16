@@ -1,34 +1,54 @@
 ﻿namespace SpreadSharp
 
 open Microsoft.Office.Interop.Excel
+open System.Runtime.InteropServices
 
 module XlApp =
 
-    /// <summary>Returns the stack collection used to hold the COM objects created by the application.
-    /// This is the mechanism used to abstract away proper COM cleanup.</summary>
+    /// <summary>Returns the stack collection used to hold the Com objects created by the application.
+    /// This is the mechanism used to implement proper COM cleanup.</summary>
     /// <returns>The stack collection.</returns>
-    let comStack = COM.comStack
+    let comStack = Com.comStack
 
-    /// <summary>Closes Excel and releases the created COM objects.</summary>
+    /// <summary>Starts Excel in visible mode.</summary>
+    /// <returns>The Excel ApplicationClass instance.</returns>
+    let start () =
+        ApplicationClass(Visible = true)
+        |> Com.pushComObj
+
+    /// <summary>Starts Excel in hidden mode.</summary>
+    /// <returns>The created Excel ApplicationClass instance.</returns>
+    let startHidden () =
+        ApplicationClass(Visible = false)
+        |> Com.pushComObj
+
+    
+    /// <summary>Returns a reference to an already running Excel instance.</summary>
+    /// <returns>The running Excel ApplicationClass instance.</returns>
+    let getActiveApp () =
+        Marshal.GetActiveObject "Excel.Application"
+        :?> Application
+        |> Com.pushComObj
+    
+    /// <summary>Closes Excel and releases its related COM objects.</summary>
     /// <param name="appClass">The Excel ApplicationClass.</param>
     let quit (appClass : ApplicationClass) =
         appClass.Quit ()
-        Utilities.releaseComObjects ()
-        Utilities.collectGarbage ()
+        Com.releaseComObjects ()
 
-    /// <summary>Starts Excel in hidden or visible mode.</summary>
-    /// <param name="visible">The visiblity setting.</param>
-    /// <returns>The created Excel ApplicationClass instance.</returns>
-    let start visible =
-        let appClass = ApplicationClass(Visible = visible)
-        COM.pushComObj appClass
-
-    /// <summary>Restores the control of Excel to the user. This function
-    /// is useful when the end used is supposed to interact with the
-    /// Excel instance.</summary>
+    /// <summary>Sets the visible property of Excel to false.</summary>
     /// <param name="appClass">The Excel application class instance.</param>
-    let restoreUserControl (appClass : ApplicationClass) =
-        appClass.UserControl <- true
+    let hide (appClass : ApplicationClass) =
+        appClass.Visible <- false
+
+    /// <summary>Sets the visible property of Excel to true.</summary>
+    /// <param name="appClass">The Excel application class instance.</param>
+    let unhide (appClass : ApplicationClass) =
         appClass.Visible <- true
-        Utilities.releaseComObjects ()
-        Utilities.collectGarbage ()
+
+    /// <summary>Restores the control of Excel to the user.</summary>
+    /// <param name="appClass">The Excel application class instance.</param>
+    let restoreUserControl appClass =
+        unhide appClass
+        appClass.UserControl <- true
+        Com.releaseComObjects ()

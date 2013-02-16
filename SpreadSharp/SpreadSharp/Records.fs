@@ -37,10 +37,10 @@ module Records =
     /// <param name="recordType">The type of the record.</param>         
     /// <param name="filename">The destination file name.</param>
     let saveAs records recordType filename =
-        let app = XlApp.start false
+        let app = XlApp.start ()
         let wb = XlWorkbook.add app
         let ws = XlWorksheet.byIndex wb 1
         toWorksheet records recordType ws
-        XlWorkbook.saveAs wb filename
-        XlWorkbook.close wb None None None
+        XlWorkbook.saveAs filename wb
+        XlWorkbook.close wb //None None None
         XlApp.quit app
