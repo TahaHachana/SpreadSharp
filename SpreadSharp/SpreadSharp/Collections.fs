@@ -28,7 +28,7 @@ module Collections =
         /// <param name="range">The range object.</param>
         /// <param name="array">The array.</param>
         let toRange range array =
-            let array2D = Array2D.ofArray array
+            let array2D = Array2D.ofSeq array
             XlRange.setValue range array2D
 
         /// <summary>Returns the values of an Excel range as an array.</summary>
@@ -49,20 +49,8 @@ module Collections =
         let toWorksheet (worksheet : Worksheet) array =
             let arrayLength = Array.length array
             let rangeString = sprintf "A1:A%d" arrayLength
-            let range = XlRange.get worksheet rangeString None
+            let range = XlRange.get worksheet rangeString
             toRange range array
-
-        /// <summary>Sends the values of an array of F# records to an Excel range.</summary>
-        /// <param name="rcords">The F# records array.</param>
-        /// <param name="recordType">The type of the record.</param>         
-        /// <param name="range">The range object.</param>         
-//        let recordsToRange (records : 'T []) recordType range = displayRecords records recordType range
-
-        /// <summary>Sends the values of an array of F# records to an Excel worksheet.</summary>
-        /// <param name="rcords">The F# records array.</param>
-        /// <param name="recordType">The type of the record.</param>         
-        /// <param name="worksheet">The worksheet object.</param>
-//        let recordsToWorksheet (records : 'T []) recordType worksheet = displayRecords' records recordType worksheet
 
     module List =
 
@@ -70,7 +58,7 @@ module Collections =
         /// <param name="range">The range object.</param>
         /// <param name="list">The list.</param>
         let toRange range list =
-            let array2D = Array2D.ofArray <| List.toArray list
+            let array2D = Array2D.ofSeq list
             XlRange.setValue range array2D
 
         /// <summary>Returns the values of an Excel range as a list.</summary>
@@ -91,20 +79,8 @@ module Collections =
         let toWorksheet (worksheet : Worksheet) list =
             let listLength = List.length list
             let rangeString = sprintf "A1:A%d" listLength
-            let range = XlRange.get worksheet rangeString None
+            let range = XlRange.get worksheet rangeString
             toRange range list
-
-        /// <summary>Sends the values of a list of F# records to an Excel range.</summary>
-        /// <param name="rcords">The F# records list.</param>
-        /// <param name="recordType">The type of the record.</param>         
-        /// <param name="range">The range object.</param>         
-//        let recordsToRange (records : 'T list) recordType range = displayRecords records recordType range
-
-        /// <summary>Sends the values of a list of F# records to an Excel worksheet.</summary>
-        /// <param name="rcords">The F# records array.</param>
-        /// <param name="recordType">The type of the record.</param>         
-        /// <param name="worksheet">The worksheet object.</param>
-//        let recordsToWorksheet (records : 'T list) recordType worksheet = displayRecords' records recordType worksheet
 
     module Seq =
 
@@ -112,7 +88,7 @@ module Collections =
         /// <param name="range">The range object.</param>
         /// <param name="seq">The seq.</param>
         let toRange range seq =
-            let array2D = Array2D.ofArray <| Seq.toArray seq
+            let array2D = Array2D.ofSeq seq
             XlRange.setValue range array2D
 
         /// <summary>Returns the values of an Excel range as a seq.</summary>
@@ -133,17 +109,5 @@ module Collections =
         let toWorksheet (worksheet : Worksheet) seq =
             let seqLength = Seq.length seq
             let rangeString = sprintf "A1:A%d" seqLength
-            let range = XlRange.get worksheet rangeString None
+            let range = XlRange.get worksheet rangeString
             toRange range seq
-
-        /// <summary>Sends the values of a list of F# records to an Excel range.</summary>
-        /// <param name="rcords">The F# records list.</param>
-        /// <param name="recordType">The type of the record.</param>         
-        /// <param name="range">The range object.</param>         
-//        let recordsToRange records recordType range = displayRecords records recordType range
-
-        /// <summary>Sends the values of a seq of F# records to an Excel worksheet.</summary>
-        /// <param name="rcords">The F# records array.</param>
-        /// <param name="recordType">The type of the record.</param>         
-        /// <param name="worksheet">The worksheet object.</param>
-//        let recordsToWorksheet records recordType worksheet = displayRecords' records recordType worksheet

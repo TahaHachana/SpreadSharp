@@ -10,7 +10,7 @@ module AssemblyInfo =
         AssemblyFileVersion("1.0.0.0")                  ;
         AssemblyProduct("SpreadSharp")                  ;
         AssemblyTitle("SpreadSharp")                    ;
-        AssemblyVersion("0.2.78.24")                    ;
+        AssemblyVersion("0.2.79.25")                    ;
     >]
 
     do ()

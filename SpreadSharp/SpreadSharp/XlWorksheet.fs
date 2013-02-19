@@ -27,7 +27,7 @@ module XlWorksheet =
 
     /// <summary>Adds a worksheet to the specified workbook after another one and optionally sets its name.</summary>
     /// <param name="workbook">The workbook object.</param>
-    /// <param name="worksheet">The worksheet before which the new one must be added.</param>
+    /// <param name="worksheet">The worksheet after which the new one must be added.</param>
     /// <param name="nameOption">The name of the worksheet.</param>
     /// <returns>The new worksheet.</returns>
     let addAfter (workbook : Workbook) worksheet nameOption =
@@ -39,7 +39,7 @@ module XlWorksheet =
     /// <summary>Adds multiple worksheets to the specified workbook.</summary>
     /// <param name="workbook">The workbook object.</param>
     /// <param name="count">The number of worksheets to add.</param>
-    let addN (workbook : Workbook) count =
+    let addMany (workbook : Workbook) count =
         [1 .. count]
         |> List.iter (fun _ ->
             workbook.Worksheets.Add()
@@ -51,7 +51,7 @@ module XlWorksheet =
     /// <param name="workbook">The workbook object.</param>
     /// <param name="worksheet">The worksheet before which the new ones must be added.</param>
     /// <param name="count">The number of worksheets to add.</param>
-    let addNBefore (workbook : Workbook) worksheet count =
+    let addManyBefore (workbook : Workbook) worksheet count =
         [1 .. count]
         |> List.iter (fun _ ->
             workbook.Worksheets.Add(Before = worksheet)
@@ -63,7 +63,7 @@ module XlWorksheet =
     /// <param name="workbook">The workbook object.</param>
     /// <param name="worksheet">The worksheet after which the new ones must be added.</param>
     /// <param name="count">The number of worksheets to add.</param>
-    let addNAfter (workbook : Workbook) worksheet count =
+    let addManyAfter (workbook : Workbook) worksheet count =
         [1 .. count]
         |> List.iter (fun _ ->
             workbook.Worksheets.Add(After = worksheet)
@@ -103,7 +103,7 @@ module XlWorksheet =
     /// <param name="worksheet">The worksheet to hide.</param>
     let hide (worksheet : Worksheet) = worksheet.Visible <- XlSheetVisibility.xlSheetHidden
 
-    /// <summary>Unhides a worksheet.</summary>
+    /// <summary>Displays a hidden worksheet.</summary>
     /// <param name="worksheet">The hidden worksheet.</param>
     let unhide (worksheet : Worksheet) = worksheet.Visible <- XlSheetVisibility.xlSheetVisible
 

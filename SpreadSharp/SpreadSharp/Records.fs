@@ -5,18 +5,19 @@ module Records =
     let private recordsRange headers fields worksheet =
         let columnsCount = Array.length headers
         let length = Seq.length fields + 1 |> string
-        XlRange.get worksheet "A1" <| Some (string (char (columnsCount + 64)) + length)
+        let rangeString = String.concat "" ["A1:"; string (char (columnsCount + 64)) + length]
+        XlRange.get worksheet rangeString
 
     let private displayRecords records recordType range =
         let headers = Utilities.recordFieldsNames recordType
         let fields = Utilities.fieldsArray records
-        let array = Array2D.ofArrays headers fields
+        let array = Array2D.ofSeqs headers fields
         XlRange.setValue range array
 
     let private displayRecords' records recordType worksheet =
         let headers = Utilities.recordFieldsNames recordType
         let fields = Utilities.fieldsArray records
-        let array = Array2D.ofArrays headers fields
+        let array = Array2D.ofSeqs headers fields
         let range = recordsRange headers fields worksheet
         XlRange.setValue range array
 
@@ -41,6 +42,6 @@ module Records =
         let wb = XlWorkbook.add app
         let ws = XlWorksheet.byIndex wb 1
         toWorksheet records recordType ws
-        XlWorkbook.saveAs filename wb
-        XlWorkbook.close wb //None None None
+        XlWorkbook.saveAs wb filename
+        XlWorkbook.close wb
         XlApp.quit app

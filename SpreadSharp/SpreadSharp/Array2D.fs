@@ -2,13 +2,11 @@
 
 module internal Array2D =
     
-    let ofArray array =
-        let length = Array.length array
-        Array2D.init length 1 (fun x _ -> array.[x])
+    let ofSeq seq = array2D [|seq|]
 
-    let ofArrays (array : 'T []) array' =
+    let ofSeqs seq seq' =
         [|
-            yield array
-            for x in array' do yield x
+            yield  seq
+            yield! seq'
         |]
         |> array2D
