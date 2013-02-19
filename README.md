@@ -5,6 +5,10 @@ About
 -----
 F# Excel interop helpers.
 
+NuGet
+-----
+	PM> Install-Package SpreadSharp
+
 MIT License
 -----------
 
@@ -19,7 +23,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Contact
 -------
 
-* Email   : tahahachana@gmail.com
-* Blog    : http://fsharp-code.blogspot.com/
-* Google+ : https://plus.google.com/103826666258148033768/
-* Twitter : https://twitter.com/TahaHachana
+* Email: tahahachana@gmail.com
+* [Blog](http://fsharp-code.blogspot.com/)
+* [+Taha](https://plus.google.com/103826666258148033768/ "Google+")
+* [@TahaHachana](https://twitter.com/TahaHachana "Twitter")
