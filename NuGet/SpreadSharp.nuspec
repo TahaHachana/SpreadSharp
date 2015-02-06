@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SpreadSharp</id>
+    <version>0.3.0</version>
+    <authors>Taha Hachana</authors>
+    <owners>Taha Hachana</owners>
+    <licenseUrl>https://github.com/TahaHachana/SpreadSharp</licenseUrl>
+    <projectUrl>https://github.com/TahaHachana/SpreadSharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>F# Excel interop pakcage.</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags>F# FSHARP EXCEL SPREADSHEETS</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>
