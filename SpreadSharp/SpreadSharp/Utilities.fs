@@ -22,5 +22,4 @@ module private Utilities =
 
     let fieldsArray records =
         records
-        |> Seq.map (fun record ->
-            FSharpValue.GetRecordFields record)
+        |> Seq.map FSharpValue.GetRecordFields
